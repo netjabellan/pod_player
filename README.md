@@ -40,6 +40,7 @@ This plugin built upon flutter's official [`video_player`](https://pub.dartlang.
 - Custom labels
 - `Change video quality` (for vimeo and youtube)
 - Enable/disable full-screen player
+- Closed captions from a provided `ClosedCaptionFile`, disabled by default and toggled with the CC button
 - support for live youtube video
 - [TODO] support for video playlist
 

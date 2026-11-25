@@ -100,6 +100,9 @@ class PodPlayerController {
   /// returns true if video is in fullscreen mode
   bool get isFullScreen => _ctr.isFullScreen;
 
+  /// Returns whether closed captions are enabled.
+  bool get areClosedCaptionsEnabled => _ctr.isClosedCaptionEnabled;
+
   bool get isMute => _ctr.isMute;
 
   PodVideoState get videoState => _ctr.podVideoState;
@@ -130,6 +133,9 @@ class PodPlayerController {
   void togglePlayPause() {
     isVideoPlaying ? pause() : play();
   }
+
+  /// Toggles closed captions for the current video.
+  void toggleClosedCaptions() => _ctr.toggleClosedCaptions();
 
   /// Listen to changes in video.
   ///

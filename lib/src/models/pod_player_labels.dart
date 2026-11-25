@@ -9,6 +9,7 @@ class PodPlayerLabels {
   final String loopVideo;
   final String playbackSpeed;
   final String quality;
+  final String closedCaptions;
   final String optionEnabled;
   final String optionDisabled;
   final String error;
@@ -26,6 +27,7 @@ class PodPlayerLabels {
     this.playbackSpeed = 'Playback speed',
     this.error = 'Error while playing video',
     this.quality = 'Quality',
+    this.closedCaptions = 'Closed captions',
     this.optionEnabled = 'on',
     this.optionDisabled = 'off',
   });

@@ -1,3 +1,6 @@
+## 0.2.3
+- Added a built-in closed-captions toggle and renderer for inline and fullscreen playback.
+
 ## 0.2.2
 - fixed broken vimeo api requests
 - upgraded minimum sdk version from ">=2.17.0 <4.0.0" to ">=3.0.0 <4.0.0"

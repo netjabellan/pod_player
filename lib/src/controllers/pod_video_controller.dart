@@ -5,6 +5,7 @@ class _PodVideoController extends _PodUiController {
   Timer? showOverlayTimer1;
 
   bool isOverlayVisible = true;
+  bool isClosedCaptionEnabled = false;
   bool isLooping = false;
   bool isFullScreen = false;
   bool isvideoPlaying = false;
@@ -132,6 +133,11 @@ class _PodVideoController extends _PodUiController {
         }
       });
     }
+  }
+
+  void toggleClosedCaptions() {
+    isClosedCaptionEnabled = !isClosedCaptionEnabled;
+    update(['closed-captions']);
   }
 
   void setVideoPlayBack(String speed) {

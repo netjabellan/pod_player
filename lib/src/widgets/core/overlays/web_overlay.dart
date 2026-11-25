@@ -157,6 +157,7 @@ class _WebOverlayBottomControlles extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Row(
                       children: [
+                        _ClosedCaptionButton(tag: tag, color: itemColor),
                         _WebSettingsDropdown(tag: tag),
                         MaterialIconButton(
                           toolTipMesg: podCtr.isFullScreen

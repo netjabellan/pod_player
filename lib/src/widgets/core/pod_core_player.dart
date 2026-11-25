@@ -32,7 +32,61 @@ class _PodCoreVideoPlayer extends StatelessWidget {
               Center(
                 child: AspectRatio(
                   aspectRatio: videoAspectRatio,
-                  child: VideoPlayer(videoPlayerCtr),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      VideoPlayer(videoPlayerCtr),
+                      GetBuilder<PodGetXVideoController>(
+                        tag: tag,
+                        id: 'closed-captions',
+                        builder: (podCtr) {
+                          if (!podCtr.isClosedCaptionEnabled) {
+                            return const SizedBox.shrink();
+                          }
+                          return ValueListenableBuilder<VideoPlayerValue>(
+                            valueListenable: videoPlayerCtr,
+                            builder: (context, value, _) {
+                              final caption = value.caption.text;
+                              if (caption.isEmpty) {
+                                return const SizedBox.shrink();
+                              }
+                              return Positioned(
+                                left: 32,
+                                right: 32,
+                                bottom: 24,
+                                child: IgnorePointer(
+                                  child: Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.78),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 10,
+                                          vertical: 6,
+                                        ),
+                                        child: Text(
+                                          caption,
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 18,
+                                            height: 1.25,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
               GetBuilder<PodGetXVideoController>(
@@ -150,6 +204,34 @@ class _PodCoreVideoPlayer extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _ClosedCaptionButton extends StatelessWidget {
+  final String tag;
+  final Color color;
+
+  const _ClosedCaptionButton({
+    required this.tag,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<PodGetXVideoController>(
+      tag: tag,
+      id: 'closed-captions',
+      builder: (podCtr) => MaterialIconButton(
+        toolTipMesg: podCtr.podPlayerLabels.closedCaptions,
+        color: color,
+        onPressed: podCtr.toggleClosedCaptions,
+        child: Icon(
+          podCtr.isClosedCaptionEnabled
+              ? Icons.closed_caption
+              : Icons.closed_caption_disabled,
+        ),
+      ),
     );
   }
 }
